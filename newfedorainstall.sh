@@ -18,15 +18,15 @@ echo "* Updating System                                               *"
 echo "*****************************************************************"
 echo " "
 
-dnf -y update
+dnf update -y
 
 echo " "
 echo "*****************************************************************"
 echo "* Installing RPMFusion Repositories                             *"
 echo "*****************************************************************"
 echo " "
-dnf -y install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
-dnf -y install --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf install --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 echo " "
 echo "*****************************************************************"
@@ -50,7 +50,7 @@ echo "*****************************************************************"
 echo " "
 
 #cinnamon
-dnf -y groupinstall cinnamon-desktop
+dnf groupinstall cinnamon-desktop -y
 
 echo " "
 echo "*****************************************************************"
@@ -59,7 +59,7 @@ echo "*****************************************************************"
 echo " "
 
 #codecs/drivers
-dnf -y install gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly java java*jdk lame
+dnf install gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly java java*jdk lame -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -68,7 +68,7 @@ echo "*****************************************************************"
 echo " "
 
 #games
-dnf -y install hedgewars numptyphysics gweled frozen-bubble numptyphysics five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex tali iagno swell-foop lightsoff quadrapassel aisleriot minetest fceux antimicro steam
+dnf install hedgewars numptyphysics gweled frozen-bubble numptyphysics five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex tali iagno swell-foop lightsoff quadrapassel aisleriot minetest fceux antimicro steam -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -77,7 +77,7 @@ echo "*****************************************************************"
 echo " "
 
 #graphic applications
-dnf -y install blender inkscape gimp pinta pencil dia shutter mypaint 
+dnf install blender inkscape gimp pinta pencil dia shutter mypaint -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -86,7 +86,7 @@ echo "*****************************************************************"
 echo " "
 
 #internet/communications
-dnf -y install google-chrome-stable firefox thunderbird filezilla pidgin pidgin-guifications deluge 
+dnf install google-chrome-stable firefox thunderbird filezilla pidgin pidgin-guifications deluge -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -95,7 +95,7 @@ echo "*****************************************************************"
 echo " "
 
 #office/readers/editors
-dnf -y install libreoffice chmsee evince scite lios
+dnf install libreoffice chmsee evince scite lios -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -104,7 +104,7 @@ echo "*****************************************************************"
 echo " "
 
 #finaceapplications
-dnf -y install gnucash grisbi homebank 
+dnf install gnucash grisbi homebank -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -113,12 +113,12 @@ echo "*****************************************************************"
 echo " "
 
 #mediaplayers/editors
-dnf -y install vlc openshot dvdrip hydrogen lmms audacity-freeworld asunder
+dnf install vlc openshot dvdrip hydrogen lmms audacity-freeworld asunder -y --skip-broken
 
 #DVD Extras
 # install negativo17 multimedia repo
-dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
-dnf -y install HandBrake-gui HandBrake-cli libdvdcss
+# dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
+# dnf install HandBrake-gui HandBrake-cli libdvdcss -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -127,7 +127,7 @@ echo "*****************************************************************"
 echo " "
 
 #utilities
-dnf -y install alacarte cups-pdf unrar liveusb-creator alacarte gparted nspluginwrapper alsa-plugins-pulseaudio libcurl p7zip fedora-icon-theme gconf-editor gnome-tweak-tool nemo-fileroller deja-dup VirtualBox isomaster gnome-software
+dnf install alacarte cups-pdf unrar liveusb-creator alacarte gparted nspluginwrapper alsa-plugins-pulseaudio libcurl p7zip fedora-icon-theme gconf-editor gnome-tweak-tool nemo-fileroller deja-dup VirtualBox isomaster gnome-software -y --skip-broken
 
 
 echo " "
@@ -143,7 +143,7 @@ then
 	echo " "
 	
 	#programmingtools
-	dnf -y install cmake fpc gcc gcc-c++ eclipse geany codeblocks bluefish git gitg meld devassistant kernel-devel kernel-headers dkms make perl gtk2-devel gtk3-devel valgrind monodevelop gpick
+	dnf install cmake fpc gcc gcc-c++ eclipse geany codeblocks bluefish git gitg meld devassistant kernel-devel kernel-headers dkms make perl gtk2-devel gtk3-devel valgrind monodevelop gpick -y --skip-broken
 fi
 
 cd ~/
