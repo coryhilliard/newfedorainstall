@@ -3,8 +3,8 @@
 # title          : newfedorainstall.sh
 # description    : This script will take a new fedora install and make it fight-ready for everyday use
 # author         : Cory Hilliard
-# date           : 2016.03.29
-# version        : 0.8    
+# creation date  : 2016.03.29
+# updated date   : 2021.05.05    
 # usage          : bash newfedorainstall.sh
 # ====================================================================================================
 
@@ -18,15 +18,15 @@ echo "* Updating System                                               *"
 echo "*****************************************************************"
 echo " "
 
-dnf update -y
+sudo dnf update -y
 
 echo " "
 echo "*****************************************************************"
 echo "* Installing RPMFusion Repositories                             *"
 echo "*****************************************************************"
 echo " "
-dnf install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-dnf install --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install --nogpgcheck http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 echo " "
 echo "*****************************************************************"
@@ -50,7 +50,7 @@ echo "*****************************************************************"
 echo " "
 
 #cinnamon
-dnf groupinstall cinnamon-desktop -y
+sudo dnf groupinstall cinnamon-desktop -y
 
 echo " "
 echo "*****************************************************************"
@@ -59,7 +59,7 @@ echo "*****************************************************************"
 echo " "
 
 #codecs/drivers
-dnf install gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly java java*jdk lame -y --skip-broken
+sudo dnf install gstreamer-plugins-good gstreamer-plugins-bad gstreamer-plugins-ugly java java*jdk lame -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -68,7 +68,7 @@ echo "*****************************************************************"
 echo " "
 
 #games
-dnf install hedgewars numptyphysics gweled frozen-bubble numptyphysics five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex tali iagno swell-foop lightsoff quadrapassel aisleriot minetest fceux antimicro steam -y --skip-broken
+sudo dnf install hedgewars numptyphysics gweled frozen-bubble numptyphysics five-or-more four-in-a-row gnome-chess gnome-klotski gnome-mahjongg gnome-mines gnome-nibbles gnome-robots gnome-sudoku gnome-tetravex tali iagno swell-foop lightsoff quadrapassel aisleriot minetest fceux antimicro steam -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -77,7 +77,7 @@ echo "*****************************************************************"
 echo " "
 
 #graphic applications
-dnf install blender inkscape gimp pinta pencil dia shutter mypaint -y --skip-broken
+sudo dnf install blender inkscape gimp pinta pencil dia shutter mypaint -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -86,7 +86,7 @@ echo "*****************************************************************"
 echo " "
 
 #internet/communications
-dnf install google-chrome-stable firefox thunderbird filezilla pidgin pidgin-guifications deluge -y --skip-broken
+sudo dnf install google-chrome-stable firefox thunderbird filezilla pidgin pidgin-guifications deluge -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -95,7 +95,7 @@ echo "*****************************************************************"
 echo " "
 
 #office/readers/editors
-dnf install libreoffice chmsee evince scite lios -y --skip-broken
+sudo dnf install libreoffice chmsee evince scite lios -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -104,7 +104,7 @@ echo "*****************************************************************"
 echo " "
 
 #finaceapplications
-dnf install gnucash grisbi homebank -y --skip-broken
+sudo dnf install gnucash grisbi homebank -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -113,12 +113,12 @@ echo "*****************************************************************"
 echo " "
 
 #mediaplayers/editors
-dnf install vlc openshot dvdrip hydrogen lmms audacity-freeworld asunder -y --skip-broken
+sudo dnf install vlc openshot dvdrip hydrogen lmms audacity-freeworld asunder -y --skip-broken
 
 #DVD Extras
 # install negativo17 multimedia repo
-# dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
-# dnf install HandBrake-gui HandBrake-cli libdvdcss -y --skip-broken
+# sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
+# sudo dnf install HandBrake-gui HandBrake-cli libdvdcss -y --skip-broken
 
 echo " "
 echo "*****************************************************************"
@@ -127,7 +127,7 @@ echo "*****************************************************************"
 echo " "
 
 #utilities
-dnf install alacarte cups-pdf unrar liveusb-creator alacarte gparted nspluginwrapper alsa-plugins-pulseaudio libcurl p7zip fedora-icon-theme gconf-editor gnome-tweak-tool nemo-fileroller deja-dup VirtualBox isomaster gnome-software -y --skip-broken
+sudo dnf install alacarte cups-pdf unrar liveusb-creator alacarte gparted nspluginwrapper alsa-plugins-pulseaudio libcurl p7zip fedora-icon-theme gconf-editor gnome-tweak-tool nemo-fileroller deja-dup VirtualBox isomaster gnome-software -y --skip-broken
 
 
 echo " "
@@ -143,8 +143,19 @@ then
 	echo " "
 	
 	#programmingtools
-	dnf install cmake fpc gcc gcc-c++ eclipse geany codeblocks bluefish git gitg meld devassistant kernel-devel kernel-headers dkms make perl gtk2-devel gtk3-devel valgrind monodevelop gpick -y --skip-broken
+	sudo dnf install cmake fpc gcc gcc-c++ eclipse geany codeblocks bluefish git gitg meld devassistant kernel-devel kernel-headers dkms make perl gtk2-devel gtk3-devel valgrind monodevelop gpick -y --skip-broken
 fi
+
+echo " "
+echo "*****************************************************************"
+echo "* Removing Garbage Apps                                         *"
+echo "*****************************************************************"
+echo " "
+
+#remove
+sudo dnf remove dnfdragora transmission -y
+
+
 
 cd ~/
 rm -rf ~/Newinstall
